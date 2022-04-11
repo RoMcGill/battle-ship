@@ -88,12 +88,35 @@ def user_action(Place_ships):
                     row = int(row) - 1
                     break
             except ValueError:
-                print('please enter a letter between 1 and 8')
+                print('please enter a number between 1 and 8')
         while True:
             try:
                 column = input('enter the column you would like to place your ship:')
                 if column in 'abcdefgh':
-                    column = NAVIGATION
+                    column = NAVIGATION[column]
+                    break
+            except KeyError:
+                print('please enter a valid letter between a-h')
+        return row, column, orientation
+    else:
+        while True:
+            try:
+                row = input('enter the row 1 - 8 of the ships')
+                if row in '12345678':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('enter a valid number between 1 - 8 ')
+        while True:
+            try:
+                column = input('enter the column of the ship: ')
+                if column in 'abcdefgh':
+                    column = NAVIGATION[column]
+                    break
+            except KeyError:
+                print('enter a valid letter between a-h')
+
+
 
         
 
