@@ -17,11 +17,26 @@ def show_board(board):
         print('%d|%s|' % (row_no,'|'.join(row)))
         row_no += 1
 
-def Place_ships(USER_BOARD):
+def Place_ships(COMP_BOARD):
     for ship_size in SHIP_SIZES:
         while True:
             if board == COMP_BOARD:
                 row, column, orientation = random.choice(['h', 'v']), random.randint(0, 7), random.randint(0, 7)
+                if check_ship_size(ship_size, row, column, orientation):
+                    if ship_overlap(ship_size, row, column, orientation) == False:
+                        #place ship
+                        if orientation == 'h':
+                            for i in range (column, column + ship_size):
+                                board[row][i] = 'x'
+                        else:
+                            for i in range(row, row + ship_size):
+                                board[i][column] = 'x'
+                        break
+
+            else:
+                Place_ships = True
+                print(f"place ship with size of {ship_size}") 
+                row, column, orientation = user_action(Place_ships)
                 if check_ship_size(ship_size, row, column, orientation):
                     if ship_overlap(ship_size, row, column, orientation) == False:
                         #place ship
@@ -57,8 +72,33 @@ def ship_overlap(SHIP_SIZES, row, column, orientation):
                 return True
     return False
 
-def user_action():
-    pass
+def user_action(Place_ships):
+    if Place_ships == True:
+        while True:
+            try:
+                orientation = input('enter orientation (h or v): ')
+                if orientation == 'h' or orientation == 'v':
+                    break
+            except TypeError:
+                print('please enter v or h')
+        while True:
+            try:
+                row = input('enter the row where you would like to place your ship: ')
+                if row in '12345678':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('please enter a letter between 1 and 8')
+        while True:
+            try:
+                column = input('enter the column you would like to place your ship:')
+                if column in 'abcdefgh':
+                    column = NAVIGATION
+
+        
+
+
+
 
 def count_score():
     pass
