@@ -17,7 +17,7 @@ def show_board(board):
         print('%d|%s|' % (row_no,'|'.join(row)))
         row_no += 1
 
-def Place_ships(COMP_BOARD):
+def Place_ships(board):
     for ship_size in SHIP_SIZES:
         while True:
             if board == COMP_BOARD:
@@ -54,11 +54,11 @@ def check_ship_size(SHIP_SIZES, row, column, orientation):
             return False
         else:
             return True
-    else:
-        if row + SHIP_SIZES > 8:
-            return False
-        else:
-            return True
+    #else:
+        #if row + SHIP_SIZES > 8:
+            #return False
+        #else:
+            #return True
 
 
 def ship_overlap(SHIP_SIZES, row, column, orientation):
@@ -116,17 +116,39 @@ def user_action(Place_ships):
             except KeyError:
                 print('enter a valid letter between a-h')
 
-
-
-        
-
-
-
-
-def count_score():
-    pass
+def count_score(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column == 'x':
+                count +=1
+    return count
 
 def turn(board):
-    pass
+    if board == USER_PLAY_BOARD:
+        row, column = user_action(USER_PLAY_BOARD)
+        if board[row][column] == '-':
+            turn(board)
+        elif board [row][column] == 'x':
+            turn(board)
+        elif COMP_BOARD[row][column] == 'x':
+            board[row][column] = 'x'
+        else:
+            board[row][column] = '-'
+    else:
+        row, column = random.randint(0,7), random.randint(0, 7)
+        if board[row][column] == '-':
+            turn(board)
+        elif board [row][column] == 'x':
+            turn(board)
+        elif COMP_BOARD[row][column] == 'x':
+            board[row][column] = 'x'
+        else:
+            board[row][column] = '-'
 
-while True:
+Place_ships(COMP_BOARD)
+show_board(COMP_BOARD)
+show_board(USER_BOARD)
+Place_ships(USER_BOARD)
+
+#while True:
