@@ -1,7 +1,9 @@
+# imported libraries
 import random
 from pyfiglet import figlet_format
 import os
 
+#constant variables
 SHIP_SIZES = [2, 3, 3, 4, 5]
 USER_BOARD = [[' '] * 8 for i in range(8)]
 COMP_BOARD = [[' '] * 8 for i in range(8)]
@@ -12,7 +14,7 @@ NAVIGATION = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 def show_board(board):
     """
-    creates board layout, 
+    creates board layout,
     """
     print('  A B C D E F G H')
     print('  -+-+-+-+-+-+-+-+')
@@ -20,7 +22,7 @@ def show_board(board):
     for row in board:
         # creating the grid formatting
         # decimal, string and joining (|) to each space in row
-        # to create columns. 
+        # to create columns.
         print('%d|%s|' % (row_no, '|'.join(row)))
         row_no += 1
 
@@ -67,8 +69,8 @@ def Place_ships(board):
 def check_ship_size(SHIP_SIZE, row, column, orientation):
     """
     checks the lenght of each ship,
-    if the whole ship does not fit in grid 
-    it will return and try again and print 
+    if the whole ship does not fit in grid
+    it will return and try again and print
     'ship does not fit'
     """
     if orientation == "H":
@@ -101,8 +103,8 @@ def ship_overlaps(board, row, column, orientation, ship_size):
 
 def user_action(Place_ship):
     """
-    gives user input, provides errors 
-    if ships are placed 
+    gives user input, provides errors
+    if ships are placed
     incorrectly (outside of the board)
 
     """
@@ -153,7 +155,7 @@ def user_action(Place_ship):
 #
 def count_score(board):
     """
-    counts correct hits 
+    counts correct hits
     """
     count = 0
     for row in board:
@@ -165,9 +167,9 @@ def count_score(board):
 
 def turn(board):
     """
-    defines whos 'go' it is 
+    defines whos 'go' it is
     and when to pass onto the computer
-    player then back to the user 
+    player then back to the user
     """
     if board == USER_PLAY_BOARD:
         row, column = user_action(USER_PLAY_BOARD)
@@ -203,7 +205,7 @@ def clearConsole():
 
 def main():
     """
-    main function to run all 
+    main function to run all
     functions in one place.
     """
     Place_ships(COMP_BOARD)
