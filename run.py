@@ -2,6 +2,7 @@
 import random
 from pyfiglet import figlet_format
 import os
+import keyboard
 
 #constant variables
 SHIP_SIZES = [2, 3, 3, 4, 5]
@@ -203,20 +204,41 @@ def clearConsole():
         command = 'cls'
     os.system(command)
 
+
 def main():
     """
     main function to run all
     functions in one place.
     """
+    
     Place_ships(COMP_BOARD)
     clearConsole()
     #show_board(COMP_BOARD)
-    print(figlet_format("Battle Ship", font = "standard"))
     show_board(USER_BOARD)
     Place_ships(USER_BOARD)
 
 
-main()
+def landing_page():
+    print(figlet_format("Battle Ship", font = "standard"))
+    print("Welcome to the warzone")
+    print("Your objective is to strategically place your ships where they stand the best chance of survival")
+    print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
+    print("We will take it from there!")
+    print(figlet_format("Ready ?", font = "standard"))
+    answer = input('ENTER Y OR N: ').upper()
+    while True:
+        if answer == "Y":
+            main()
+        elif answer == "N":
+            print('YOU WERE A GOOD SOLDIER!')
+            return False
+        else:
+            print('PLEASE ENTER Y OR N')
+            answer = input('ENTER Y OR N: \n').upper()
+
+
+landing_page()
+
 
 # deciding the winner based on the data.
 while True:
