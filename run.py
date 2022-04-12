@@ -11,17 +11,27 @@ NAVIGATION = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 
 def show_board(board):
+    """
+    creates board layout, 
+    """
     print('  A B C D E F G H')
     print('  -+-+-+-+-+-+-+-+')
     row_no = 1
     for row in board:
-        # creating the grid formatting decimal,
-        #  string and joining (|) to each row
+        # creating the grid formatting
+        # decimal, string and joining (|) to each space in row
+        # to create columns. 
         print('%d|%s|' % (row_no, '|'.join(row)))
         row_no += 1
 
 
 def Place_ships(board):
+    """
+    places ships, for computer in random variations
+    h for horzontal and v for vertical.
+    function also ensures no overlap of ships or that
+    no ships are bing placed outside the grid.
+    """
     for ship_size in SHIP_SIZES:
         while True:
             if board == COMP_BOARD:
@@ -55,6 +65,12 @@ def Place_ships(board):
 
 
 def check_ship_size(SHIP_SIZE, row, column, orientation):
+    """
+    checks the lenght of each ship,
+    if the whole ship does not fit in grid 
+    it will return and try again and print 
+    'ship does not fit'
+    """
     if orientation == "H":
         if row + SHIP_SIZE > 8:
             print('ship does not fit')
@@ -67,8 +83,11 @@ def check_ship_size(SHIP_SIZE, row, column, orientation):
         else:
             return True
 
-
+#
 def ship_overlaps(board, row, column, orientation, ship_size):
+    """
+    checks for overlap in placed ships
+    """
     if orientation == 'H':
         for i in range(column, column + ship_size):
             if board[row][i] == 'X':
@@ -81,6 +100,12 @@ def ship_overlaps(board, row, column, orientation, ship_size):
 
 
 def user_action(Place_ship):
+    """
+    gives user input, provides errors 
+    if ships are placed 
+    incorrectly (outside of the board)
+
+    """
     if Place_ship == True:
         while True:
             try:
@@ -125,8 +150,11 @@ def user_action(Place_ship):
                 print('enter a valid letter between A-H')
         return row, column
 
-
+#
 def count_score(board):
+    """
+    counts correct hits 
+    """
     count = 0
     for row in board:
         for column in row:
@@ -136,6 +164,11 @@ def count_score(board):
 
 
 def turn(board):
+    """
+    defines whos 'go' it is 
+    and when to pass onto the computer
+    player then back to the user 
+    """
     if board == USER_PLAY_BOARD:
         row, column = user_action(USER_PLAY_BOARD)
         if board[row][column] == '-':
@@ -159,12 +192,20 @@ def turn(board):
 
 
 def clearConsole():
+    """
+    housekeeping, this clears the terminal
+    when called for a cleener look and feel.
+    """
     command = 'clear'
     if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
         command = 'cls'
     os.system(command)
 
 def main():
+    """
+    main function to run all 
+    functions in one place.
+    """
     Place_ships(COMP_BOARD)
     clearConsole()
     #show_board(COMP_BOARD)
@@ -175,7 +216,7 @@ def main():
 
 main()
 
-
+# deciding the winner based on the data.
 while True:
     #user turn
     while True:
