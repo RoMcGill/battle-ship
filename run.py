@@ -28,6 +28,17 @@ def show_board(board):
         row_no += 1
 
 
+def username_input():
+    """
+    Collects the user name input,
+    """
+    global player_name
+    player_name = input('ENTER YOUR SECOND NAME SOLDIER!: ')    
+    print(f'GREAT TO SEE YOU ON BACK THE FRONTLINE RECON OFFICER {player_name}\n'.upper())
+    return player_name
+
+
+
 def Place_ships(board):
     """
     places ships, for computer in random variations
@@ -52,7 +63,7 @@ def Place_ships(board):
 
             else:
                 Place_ship = True
-                print(f"place ship with size of {ship_size} spaces to the board")
+                print(f"WHERE DO YOU WANT THIS {ship_size} MAN SHIP TO DOCK {player_name}\n")
                 row, column, orientation = user_action(Place_ship)
                 if check_ship_size(ship_size, row, column, orientation):
                     if ship_overlaps(board, row, column, orientation, ship_size,) == False:
@@ -75,7 +86,7 @@ def check_ship_size(SHIP_SIZE, row, column, orientation):
     'ship does not fit'
     """
     if orientation == "H":
-        if row + SHIP_SIZE > 8:
+        if column + SHIP_SIZE > 8:
             print('ship does not fit')
             return False
         else:
@@ -94,11 +105,14 @@ def ship_overlaps(board, row, column, orientation, ship_size):
     if orientation == 'H':
         for i in range(column, column + ship_size):
             if board[row][i] == 'X':
+                print('WE HAVE ALREADY GOT A SHIP THERE SOLDIER')
                 return True
     else:
         for i in range(row, row + ship_size):
             if board[i][column] == 'X':
+                print('WE HAVE ALREADY GOT A SHIP THERE SOLDIER')
                 return True
+
     return False
 
 
@@ -112,14 +126,14 @@ def user_action(Place_ship):
     if Place_ship == True:
         while True:
             try:
-                orientation = input('enter orientation (H or V): ').upper()
+                orientation = input(f'DO YOU WANT OUR SHIPS HORIZONTAL OR VERTICAL {player_name}\n (H or V):').upper()
                 if orientation == 'H' or orientation == 'V':
                     break
             except TypeError:
-                print('please enter V or H')
+                print(f'STOP MESSING AROUND {player_name}\n (V or H) ARE YOUR OPTIONS').upper()
         while True:
             try:
-                row = input('enter the row where you would like to place your ship: ')
+                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n').upper()
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -127,7 +141,7 @@ def user_action(Place_ship):
                 print('please enter a number between 1 and 8')
         while True:
             try:
-                column = input('enter the column you would like to place your ship:').upper()
+                column = input(f'WHAT COLUMN DO YOU WANT THIS SHIP PLACED IN {player_name}\n').upper()
                 if column in 'ABCDEFGH':
                     column = NAVIGATION[column]
                     break
@@ -137,7 +151,7 @@ def user_action(Place_ship):
     else:
         while True:
             try:
-                row = input('enter the row 1 - 8 of the ships')
+                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n').upper()
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -220,7 +234,7 @@ def main():
 
 def landing_page():
     print(figlet_format("Battle Ship", font = "standard"))
-    print("Welcome to the warzone")
+    print(f"Welcome to the warzone {player_name}")
     print("Your objective is to strategically place your ships where they stand the best chance of survival")
     print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
     print("We will take it from there!")
@@ -237,6 +251,13 @@ def landing_page():
             answer = input('ENTER Y OR N: \n').upper()
 
 
+def leaderboard():
+    """
+    leaderboard, api to read and write to google sheet
+    """
+
+
+username_input()
 landing_page()
 
 
@@ -244,12 +265,12 @@ landing_page()
 while True:
     #user turn
     while True:
-        print('guess a battleship location')
+        print(f'WHERE DO YOU WANT TO PUT THESE SHIPS {player_name}\n'.upper())
         show_board(USER_PLAY_BOARD)
         turn(USER_PLAY_BOARD)
         break
     if count_score(USER_PLAY_BOARD) == 17:
-        print('you win!')
+        print(f'YOU DID IT {player_name}\n'.upper())
         break
     #comp turn
     while True:
@@ -257,5 +278,5 @@ while True:
         break
     show_board(COMP_PLAY_BOARD)
     if count_score(COMP_PLAY_BOARD) == 17:
-        print('computer wins !!')
+        print(f'TODAY WAS NOT YOUR FINEST OFFICER {player_name}\n'.upper())
         break
