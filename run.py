@@ -56,7 +56,7 @@ def check_ship_size(SHIP_SIZE, row, column, orientation):
             return True
     else:
         if row + SHIP_SIZE > 8:
-            print('ship does not fit')
+            
             return False
         else:
             return True
@@ -146,11 +146,13 @@ def turn(board):
             board[row][column] = 'X'
         else:
             board[row][column] = '-'
+def main():
+    Place_ships(COMP_BOARD)
+    show_board(COMP_BOARD)
+    show_board(USER_BOARD)
+    Place_ships(USER_BOARD)
 
-Place_ships(COMP_BOARD)
-show_board(COMP_BOARD)
-show_board(USER_BOARD)
-Place_ships(USER_BOARD)
+main()
 
 while True:
     #user turn
