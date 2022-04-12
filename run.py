@@ -2,24 +2,24 @@ import random
 from pyfiglet import figlet_format
 import os
 
-print(figlet_format("Battle Ship", font = "standard" ))
-
-
-SHIP_SIZES = [2,3,3,4,5]
+SHIP_SIZES = [2, 3, 3, 4, 5]
 USER_BOARD = [[' '] * 8 for i in range(8)]
 COMP_BOARD = [[' '] * 8 for i in range(8)]
 USER_PLAY_BOARD = [[' '] * 8 for i in range(8)]
 COMP_PLAY_BOARD = [[' '] * 8 for i in range(8)]
-NAVIGATION = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7}
+NAVIGATION = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
+
 
 def show_board(board):
     print('  A B C D E F G H')
     print('  -+-+-+-+-+-+-+-+')
     row_no = 1
     for row in board:
-        # creating the grid formatting decimal, string and joining (|) to each row 
-        print('%d|%s|' % (row_no,'|'.join(row)))
+        # creating the grid formatting decimal,
+        #  string and joining (|) to each row
+        print('%d|%s|' % (row_no, '|'.join(row)))
         row_no += 1
+
 
 def Place_ships(board):
     for ship_size in SHIP_SIZES:
@@ -27,10 +27,10 @@ def Place_ships(board):
             if board == COMP_BOARD:
                 orientation, row, column = random.choice(['H', 'V']), random.randint(0, 7), random.randint(0, 7)
                 if check_ship_size(ship_size, row, column, orientation):
-                    if ship_overlaps(board, row, column, orientation,ship_size,) == False:
+                    if ship_overlaps(board, row, column, orientation, ship_size,) == False:
                         #place ship
                         if orientation == 'H':
-                            for i in range (column, column + ship_size):
+                            for i in range(column, column + ship_size):
                                 board[row][i] = 'X'
                         else:
                             for i in range(row, row + ship_size):
@@ -39,19 +39,21 @@ def Place_ships(board):
 
             else:
                 Place_ship = True
-                print(f"place ship with size of {ship_size} spaces to the board") 
+                print(f"place ship with size of {ship_size} spaces to the board")
                 row, column, orientation = user_action(Place_ship)
                 if check_ship_size(ship_size, row, column, orientation):
                     if ship_overlaps(board, row, column, orientation, ship_size,) == False:
                         #place ship
                         if orientation == 'H':
-                            for i in range (column, column + ship_size):
+                            for i in range(column, column + ship_size):
                                 board[row][i] = 'X'
                         else:
                             for i in range(row, row + ship_size):
                                 board[i][column] = 'X'
                         show_board(USER_BOARD)
                         break
+
+
 def check_ship_size(SHIP_SIZE, row, column, orientation):
     if orientation == "H":
         if row + SHIP_SIZE > 8:
@@ -61,10 +63,10 @@ def check_ship_size(SHIP_SIZE, row, column, orientation):
             return True
     else:
         if row + SHIP_SIZE > 8:
-            
             return False
         else:
             return True
+
 
 def ship_overlaps(board, row, column, orientation, ship_size):
     if orientation == 'H':
@@ -76,6 +78,7 @@ def ship_overlaps(board, row, column, orientation, ship_size):
             if board[i][column] == 'X':
                 return True
     return False
+
 
 def user_action(Place_ship):
     if Place_ship == True:
@@ -122,44 +125,56 @@ def user_action(Place_ship):
                 print('enter a valid letter between A-H')
         return row, column
 
+
 def count_score(board):
     count = 0
     for row in board:
         for column in row:
             if column == 'X':
-                count +=1
+                count += 1
     return count
+
 
 def turn(board):
     if board == USER_PLAY_BOARD:
         row, column = user_action(USER_PLAY_BOARD)
         if board[row][column] == '-':
             turn(board)
-        elif board [row][column] == 'X':
+        elif board[row][column] == 'X':
             turn(board)
         elif COMP_BOARD[row][column] == 'X':
             board[row][column] = 'X'
         else:
             board[row][column] = '-'
     else:
-        row, column = random.randint(0,7), random.randint(0, 7)
+        row, column = random.randint(0, 7), random.randint(0, 7)
         if board[row][column] == '-':
             turn(board)
-        elif board [row][column] == 'X':
+        elif board[row][column] == 'X':
             turn(board)
         elif COMP_BOARD[row][column] == 'X':
             board[row][column] = 'X'
         else:
             board[row][column] = '-'
+
+
+def clearConsole():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
+
 def main():
     Place_ships(COMP_BOARD)
-    clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
     clearConsole()
     #show_board(COMP_BOARD)
+    print(figlet_format("Battle Ship", font = "standard"))
     show_board(USER_BOARD)
     Place_ships(USER_BOARD)
 
+
 main()
+
 
 while True:
     #user turn
