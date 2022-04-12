@@ -86,7 +86,7 @@ def check_ship_size(SHIP_SIZE, row, column, orientation):
         else:
             return True
 
-#
+# find bug in here that thinks ships are overlapping
 def ship_overlaps(board, row, column, orientation, ship_size):
     """
     checks for overlap in placed ships
