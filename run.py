@@ -4,7 +4,7 @@ from pyfiglet import figlet_format
 import os
 import keyboard
 
-#constant variables
+# constant variables
 SHIP_SIZES = [2, 3, 3, 4, 5]
 USER_BOARD = [[' '] * 8 for i in range(8)]
 COMP_BOARD = [[' '] * 8 for i in range(8)]
@@ -130,10 +130,10 @@ def user_action(Place_ship):
                 if orientation == 'H' or orientation == 'V':
                     break
             except TypeError:
-                print(f'STOP MESSING AROUND {player_name}\n (V or H) ARE YOUR OPTIONS').upper()
+                print('(V or H) ARE YOUR OPTIONS')
         while True:
             try:
-                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n').upper()
+                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n')
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -141,7 +141,7 @@ def user_action(Place_ship):
                 print('please enter a number between 1 and 8')
         while True:
             try:
-                column = input(f'WHAT COLUMN DO YOU WANT THIS SHIP PLACED IN {player_name}\n').upper()
+                column = input(f'WHAT COLUMN DO YOU WANT THIS SHIP PLACED IN {player_name}\n')
                 if column in 'ABCDEFGH':
                     column = NAVIGATION[column]
                     break
@@ -151,7 +151,7 @@ def user_action(Place_ship):
     else:
         while True:
             try:
-                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n').upper()
+                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n')
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -167,7 +167,7 @@ def user_action(Place_ship):
                 print('enter a valid letter between A-H')
         return row, column
 
-#
+
 def count_score(board):
     """
     counts correct hits
@@ -224,9 +224,9 @@ def main():
     main function to run all
     functions in one place.
     """
-    
+  
     Place_ships(COMP_BOARD)
-    clearConsole()
+    #clearConsole()
     #show_board(COMP_BOARD)
     show_board(USER_BOARD)
     Place_ships(USER_BOARD)
