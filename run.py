@@ -1,4 +1,9 @@
 import random
+from pyfiglet import figlet_format
+import os
+
+print(figlet_format("Battle Ship", font = "standard" ))
+
 
 SHIP_SIZES = [2,3,3,4,5]
 USER_BOARD = [[' '] * 8 for i in range(8)]
@@ -34,7 +39,7 @@ def Place_ships(board):
 
             else:
                 Place_ship = True
-                print(f"place ship with size of {ship_size}") 
+                print(f"place ship with size of {ship_size} spaces to the board") 
                 row, column, orientation = user_action(Place_ship)
                 if check_ship_size(ship_size, row, column, orientation):
                     if ship_overlaps(board, row, column, orientation, ship_size,) == False:
@@ -148,7 +153,9 @@ def turn(board):
             board[row][column] = '-'
 def main():
     Place_ships(COMP_BOARD)
-    show_board(COMP_BOARD)
+    clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+    clearConsole()
+    #show_board(COMP_BOARD)
     show_board(USER_BOARD)
     Place_ships(USER_BOARD)
 
