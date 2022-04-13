@@ -24,6 +24,8 @@ COMP_BOARD = [[' '] * 8 for i in range(8)]
 USER_PLAY_BOARD = [[' '] * 8 for i in range(8)]
 COMP_PLAY_BOARD = [[' '] * 8 for i in range(8)]
 NAVIGATION = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
+W = "<winner<"
+L = "<looser<"
 
 
 def show_board(board):
@@ -41,6 +43,20 @@ def show_board(board):
         row_no += 1
 
 
+def did_you_win():
+    print('CAN YOU STATE IF YOU WON OR LOST, FOR OUR RECORDS')
+    answer = input('ENTER W OR L: ').upper()
+    while True:
+        if answer == "W":
+            update_sheet(W)
+            break
+        elif answer == "L":
+            update_sheet(L)
+            return False
+        else:
+            print('PLEASE ENTER W OR L')
+            answer = input('ENTER W OR L: \n').upper()
+
 
 def username_input():
     """
@@ -51,6 +67,7 @@ def username_input():
     print(f'GREAT TO SEE YOU ON BACK THE FRONTLINE RECON OFFICER {player_name}\n'.upper())
     return player_name
 
+
 def update_sheet(data):
     """
     Update worksheet with new players name
@@ -59,11 +76,6 @@ def update_sheet(data):
     
     player_name.append_row([data])
 
-def winner():
-    winner = print("winner")
-
-def looser():
-    looser = print("looser")
 
 def Place_ships(board):
     """
@@ -222,6 +234,36 @@ def landing_page():
     print("Your objective is to strategically place your ships where they stand the best chance of survival")
     print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
     print("We will take it from there!")
+    answer = input('SHOW LEADERBOARD (L) CONTINUE (C): ').upper()
+    while True:
+        if answer == "L":
+            leaderboard = SHEET.worksheet("leaderboard").get_all_values()
+            print('---------------------------------------------')
+            print(leaderboard)
+            print('---------------------------------------------')
+            break
+        elif answer == "C":
+
+            return False
+        else:
+            print('PLEASE ENTER L OR C')
+            answer = input('SHOW LEADERBOARD (L) CONTINUE (C): ').upper()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     print(figlet_format("Ready ?", font = "standard"))
     answer = input('ENTER Y OR N: ').upper()
     while True:
@@ -266,7 +308,7 @@ def turn(board):
             board[row][column] = '-'
 
 Place_ships(COMP_BOARD)
-show_board(COMP_BOARD)
+#show_board(COMP_BOARD)
 #clearConsole()
 show_board(USER_BOARD)
 Place_ships(USER_BOARD)
@@ -280,7 +322,7 @@ while True:
         break
     if count_score(USER_PLAY_BOARD) == 17:
         print(figlet_format("WINNER", font = "standard"))
-        winner()
+        did_you_win()
         print('YOU SAVED ALOT OF LIVES OUT THERE TODAY SOLDIER')
         print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
         answer = input('ENTER Y OR N: ').upper()
@@ -301,7 +343,7 @@ while True:
     show_board(COMP_PLAY_BOARD)   
     if count_score(COMP_PLAY_BOARD) == 17:
         print(figlet_format("LOOSER!", font = "standard"))
-        looser()
+        did_you_win()
         print("WE MAY HAVE LOST THE BATTLE, BUT NOT THE WAR!")
         print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
         answer = input('ENTER Y OR N: ').upper()
