@@ -148,7 +148,7 @@ def user_action(Place_ship):
     else:
         while True:
             try:
-                row = input(f'WHAT ROW DO YOU WANT THIS SHIP PLACED IN {player_name}\n')
+                row = input(f'WHAT ROW WOULD YOU LIKE TO ATTACK? {player_name}\n')
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -188,9 +188,27 @@ def clearConsole():
     os.system(command)
 
 
-
-
 username_input()
+
+def landing_page():
+    print(figlet_format("Battle Ship", font = "standard"))
+    print(f"Welcome to the warzone {player_name}")
+    print("Your objective is to strategically place your ships where they stand the best chance of survival")
+    print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
+    print("We will take it from there!")
+    print(figlet_format("Ready ?", font = "standard"))
+    answer = input('ENTER Y OR N: ').upper()
+    while True:
+        if answer == "Y":
+            break
+        elif answer == "N":
+            print('YOU WERE A GOOD SOLDIER!')
+            return False
+        else:
+            print('PLEASE ENTER Y OR N')
+            answer = input('ENTER Y OR N: \n').upper()
+
+landing_page()
 
 
 def turn(board):
@@ -215,11 +233,10 @@ def turn(board):
             turn(board)
         elif board[row][column] == 'X':
             turn(board)
-        elif COMP_BOARD[row][column] == 'X':
+        elif USER_BOARD[row][column] == 'X':
             board[row][column] = 'X'
         else:
             board[row][column] = '-'
-
 
 Place_ships(COMP_BOARD)
 show_board(COMP_BOARD)
@@ -237,33 +254,37 @@ while True:
     if count_score(USER_PLAY_BOARD) == 17:
         print(figlet_format("WINNER", font = "standard"))
         print('YOU SAVED ALOT OF LIVES OUT THERE TODAY SOLDIER')
-        break   
+        print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
+        answer = input('ENTER Y OR N: ').upper()
+        while True:
+            if answer == "Y":
+                landing_page()
+            elif answer == "N":
+                print('YOU WERE A GOOD SOLDIER!')
+                landing_page()
+            else:
+                print('PLEASE ENTER Y OR N')
+                answer = input('ENTER Y OR N: \n').upper()    
+            break   
     #computer turn
     while True:
         turn(COMP_PLAY_BOARD)
         break           
     show_board(COMP_PLAY_BOARD)   
     if count_score(COMP_PLAY_BOARD) == 17:
+        print(figlet_format("LOOSER!", font = "standard"))
         print("WE MAY HAVE LOST THE BATTLE, BUT NOT THE WAR!")
+        print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
+        answer = input('ENTER Y OR N: ').upper()
+        while True:
+            if answer == "Y":
+                landing_page()
+            elif answer == "N":
+                print('YOU WERE A GOOD SOLDIER!')
+                landing_page()
+            else:
+                print('PLEASE ENTER Y OR N')
+                answer = input('ENTER Y OR N: \n').upper()    
+            break   
         break
 
-
-def landing_page():
-    print(figlet_format("Battle Ship", font = "standard"))
-    print(f"Welcome to the warzone {player_name}")
-    print("Your objective is to strategically place your ships where they stand the best chance of survival")
-    print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
-    print("We will take it from there!")
-    print(figlet_format("Ready ?", font = "standard"))
-    answer = input('ENTER Y OR N: ').upper()
-    while True:
-        if answer == "Y":
-            turn(board)
-        elif answer == "N":
-            print('YOU WERE A GOOD SOLDIER!')
-            return False
-        else:
-            print('PLEASE ENTER Y OR N')
-            answer = input('ENTER Y OR N: \n').upper()
-
-landing_page()
