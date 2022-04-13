@@ -45,7 +45,7 @@ def show_board(board):
 
 def did_you_win():
     print('CAN YOU STATE IF YOU WON OR LOST, FOR OUR RECORDS')
-    answer = input('ENTER W OR L: ').upper()
+    answer = input('ENTER W OR L:\n ').upper()
     while True:
         if answer == "W":
             update_sheet(W)
@@ -55,7 +55,7 @@ def did_you_win():
             return False
         else:
             print('PLEASE ENTER W OR L')
-            answer = input('ENTER W OR L: \n').upper()
+            answer = input('ENTER W OR L:\n').upper()
 
 
 def username_input():
@@ -63,7 +63,7 @@ def username_input():
     Collects the user name input,
     """
     global player_name
-    player_name = input('ENTER YOUR SECOND NAME SOLDIER!: ')    
+    player_name = input('ENTER YOUR SECOND NAME SOLDIER!:\n')    
     print(f'GREAT TO SEE YOU ON BACK THE FRONTLINE RECON OFFICER {player_name}\n'.upper())
     return player_name
 
@@ -161,7 +161,7 @@ def user_action(Place_ship):
     if Place_ship == True:
         while True:
             try:
-                orientation = input(f'DO YOU WANT OUR SHIPS HORIZONTAL OR VERTICAL {player_name}\n (H or V):').upper()
+                orientation = input(f'DO YOU WANT OUR SHIPS HORIZONTAL OR VERTICAL {player_name}\n (H or V):\n').upper()
                 if orientation == 'H' or orientation == 'V':
                     break
             except TypeError:
@@ -194,7 +194,7 @@ def user_action(Place_ship):
                 print('enter a valid number between 1 - 8 ')
         while True:
             try:
-                column = input('enter the column of the ship: ').upper()
+                column = input('enter the column of the ship:\n').upper()
                 if column in 'ABCDEFGH':
                     column = NAVIGATION[column]
                     break
@@ -234,7 +234,7 @@ def landing_page():
     print("Your objective is to strategically place your ships where they stand the best chance of survival")
     print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
     print("We will take it from there!")
-    answer = input('SHOW LEADERBOARD (L) CONTINUE (C): ').upper()
+    answer = input('SHOW LEADERBOARD (L) CONTINUE (C):\n').upper()
     while True:
         if answer == "L":
             leaderboard = SHEET.worksheet("leaderboard").get_all_values()
@@ -247,25 +247,11 @@ def landing_page():
             return False
         else:
             print('PLEASE ENTER L OR C')
-            answer = input('SHOW LEADERBOARD (L) CONTINUE (C): ').upper()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            answer = input('SHOW LEADERBOARD (L) CONTINUE (C):\n').upper()
 
 
     print(figlet_format("Ready ?", font = "standard"))
-    answer = input('ENTER Y OR N: ').upper()
+    answer = input('ENTER Y OR N:\n').upper()
     while True:
         if answer == "Y":
             update_sheet(player_name)
@@ -325,7 +311,7 @@ while True:
         did_you_win()
         print('YOU SAVED ALOT OF LIVES OUT THERE TODAY SOLDIER')
         print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
-        answer = input('ENTER Y OR N: ').upper()
+        answer = input('ENTER Y OR N:\n').upper()
         while True:
             if answer == "Y":
                 landing_page()
@@ -334,7 +320,7 @@ while True:
                 landing_page()
             else:
                 print('PLEASE ENTER Y OR N')
-                answer = input('ENTER Y OR N: \n').upper()    
+                answer = input('ENTER Y OR N:\n').upper()    
             break   
     #computer turn
     while True:
@@ -346,7 +332,7 @@ while True:
         did_you_win()
         print("WE MAY HAVE LOST THE BATTLE, BUT NOT THE WAR!")
         print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
-        answer = input('ENTER Y OR N: ').upper()
+        answer = input('ENTER Y OR N:\n').upper()
         while True:
             if answer == "Y":
                 landing_page()
