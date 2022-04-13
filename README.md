@@ -1,3 +1,23 @@
+TODO
+get all data displaying nicely inside heroku 
+sell check
+readme
+wireframe
+bug
+flowcharts
+deployment
+table of contents 
+dropdown menu
+
+
+
+
+
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome RoMcGill,
