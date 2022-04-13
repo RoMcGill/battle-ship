@@ -56,8 +56,14 @@ def update_sheet(data):
     Update worksheet with new players name
     """
     player_name = SHEET.worksheet("leaderboard")
+    
     player_name.append_row([data])
 
+def winner():
+    winner = print("winner")
+
+def looser():
+    looser = print("looser")
 
 def Place_ships(board):
     """
@@ -274,6 +280,7 @@ while True:
         break
     if count_score(USER_PLAY_BOARD) == 17:
         print(figlet_format("WINNER", font = "standard"))
+        winner()
         print('YOU SAVED ALOT OF LIVES OUT THERE TODAY SOLDIER')
         print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
         answer = input('ENTER Y OR N: ').upper()
@@ -294,6 +301,7 @@ while True:
     show_board(COMP_PLAY_BOARD)   
     if count_score(COMP_PLAY_BOARD) == 17:
         print(figlet_format("LOOSER!", font = "standard"))
+        looser()
         print("WE MAY HAVE LOST THE BATTLE, BUT NOT THE WAR!")
         print('WOULD YOU LIKE TO GET BACK IN THE ACTION?')
         answer = input('ENTER Y OR N: ').upper()
