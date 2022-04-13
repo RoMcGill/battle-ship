@@ -41,6 +41,7 @@ def show_board(board):
         row_no += 1
 
 
+
 def username_input():
     """
     Collects the user name input,
@@ -50,6 +51,12 @@ def username_input():
     print(f'GREAT TO SEE YOU ON BACK THE FRONTLINE RECON OFFICER {player_name}\n'.upper())
     return player_name
 
+def update_sheet(data):
+    """
+    Update worksheet with new players name
+    """
+    player_name = SHEET.worksheet("leaderboard")
+    player_name.append_row([data])
 
 
 def Place_ships(board):
@@ -213,6 +220,7 @@ def landing_page():
     answer = input('ENTER Y OR N: ').upper()
     while True:
         if answer == "Y":
+            update_sheet(player_name)
             break
         elif answer == "N":
             print('YOU WERE A GOOD SOLDIER!')
