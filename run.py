@@ -230,9 +230,10 @@ username_input()
 
 def landing_page():
     print(figlet_format("Battle Ship", font = "standard"))
+    print(figlet_format("WARZONE", font = "standard"))
     print(f"Welcome to the warzone {player_name}")
-    print("Your objective is to strategically place your ships where they stand the best chance of survival")
-    print("You must tap into your powers of remote viewing to visualise where the enemie ships are docked and \nreport their coordinates back to us.")
+    print("Your objective is to strategically place your ships where they stand the \nbest chance of survival")
+    print("You must tap into your powers of remote viewing to visualise where the enemie \nships are docked and \nreport their coordinates back to us.")
     print("We will take it from there!")
     answer = input('SHOW LEADERBOARD (L) CONTINUE (C):\n').upper()
     while True:
