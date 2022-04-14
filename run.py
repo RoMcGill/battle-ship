@@ -16,7 +16,8 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('leaderboard').sheet1
+SHEET = GSPREAD_CLIENT.open('leaderboard')
+SHEET1= GSPREAD_CLIENT.open('leaderboard').sheet1
 
 # constant variables
 SHIP_SIZES = [2, 3, 3, 4, 5]
@@ -45,14 +46,13 @@ def show_board(board):
 
 
 def did_you_win():
-    print('CAN YOU STATE IF YOU WON OR LOST, FOR OUR RECORDS')
+    print('CAN YOU STATE IF YOU WON OR LOST,\nSO WE CAN ADD YOU TO OUR WINNERSBOARD')
     answer = input('ENTER W OR L:\n ').upper()
     while True:
         if answer == "W":
-            update_sheet(W)
+            update_sheet(player_name)
             break
         elif answer == "L":
-            update_sheet(L)
             return False
         else:
             print('PLEASE ENTER W OR L')
@@ -236,30 +236,30 @@ def landing_page():
     print("Your objective is to strategically place your ships where they stand the \nbest chance of survival")
     print("You must tap into your powers of remote viewing to visualise where the enemie \nships are docked and \nreport their coordinates back to us.")
     print("We will take it from there!")
-    answer = input('SHOW LEADERBOARD (L) CONTINUE (C):\n').upper()
+    answer = input('SHOW WINNERSBOARD (W) CONTINUE (C):\n').upper()
     while True:
-        if answer == "L":
-            row_1 = SHEET.row_values(1)
-            row_2 = SHEET.row_values(2)
-            row_3 = SHEET.row_values(3)
-            row_4 = SHEET.row_values(4)
-            row_5 = SHEET.row_values(5)
-            row_6 = SHEET.row_values(6)
-            row_7 = SHEET.row_values(7)
-            row_8 = SHEET.row_values(8)
-            row_9 = SHEET.row_values(9)
-            row_10 = SHEET.row_values(10)
-            row_11 = SHEET.row_values(11)
-            row_12 = SHEET.row_values(12)
-            row_13 = SHEET.row_values(13)
-            row_14 = SHEET.row_values(14)
-            row_15 = SHEET.row_values(15)
-            row_16 = SHEET.row_values(16)
-            row_17 = SHEET.row_values(17)
-            row_18 = SHEET.row_values(18)
-            row_19 = SHEET.row_values(19)
-            row_20 = SHEET.row_values(20)
-            row_21 = SHEET.row_values(21)
+        if answer == "W":
+            row_1 = SHEET1.row_values(1)
+            row_2 = SHEET1.row_values(2)
+            row_3 = SHEET1.row_values(3)
+            row_4 = SHEET1.row_values(4)
+            row_5 = SHEET1.row_values(5)
+            row_6 = SHEET1.row_values(6)
+            row_7 = SHEET1.row_values(7)
+            row_8 = SHEET1.row_values(8)
+            row_9 = SHEET1.row_values(9)
+            row_10 = SHEET1.row_values(10)
+            row_11 = SHEET1.row_values(11)
+            row_12 = SHEET1.row_values(12)
+            row_13 = SHEET1.row_values(13)
+            row_14 = SHEET1.row_values(14)
+            row_15 = SHEET1.row_values(15)
+            row_16 = SHEET1.row_values(16)
+            row_17 = SHEET1.row_values(17)
+            row_18 = SHEET1.row_values(18)
+            row_19 = SHEET1.row_values(19)
+            row_20 = SHEET1.row_values(20)
+            row_21 = SHEET1.row_values(21)
             print(row_1)
             print(' ')
             print(row_2)
@@ -287,19 +287,18 @@ def landing_page():
 
             return False
         else:
-            print('PLEASE ENTER L OR C')
-            answer = input('SHOW LEADERBOARD (L) CONTINUE (C):\n').upper()
+            print('PLEASE ENTER W OR C')
+            answer = input('SHOW LEADERBOARD (W) CONTINUE (C):\n').upper()
 
 
     print(figlet_format("Ready ?", font = "standard"))
     answer = input('ENTER Y OR N:\n').upper()
     while True:
         if answer == "Y":
-            update_sheet(player_name)
             break
         elif answer == "N":
             print('YOU WERE A GOOD SOLDIER!')
-            return False
+            landing_page()
         else:
             print('PLEASE ENTER Y OR N')
             answer = input('ENTER Y OR N: \n').upper()
