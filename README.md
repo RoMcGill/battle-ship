@@ -11,6 +11,31 @@ dropdown menu
 
 
 
+# how to play
+
+
+# features
+
+
+# data model
+
+
+# testing
+
+
+# bugs
+
+
+# deployment
+
+
+# credits
+
+
+
+
+
+
 https://battleship-warzone.herokuapp.com/
 
 
