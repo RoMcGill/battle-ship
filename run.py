@@ -308,8 +308,7 @@ def landing_page():
             print(row_21)
             break
         elif answer == "C":
-
-            return False
+            landing_page()
         else:
             print('PLEASE ENTER W OR C')
             answer = input('SHOW LEADERBOARD (W) CONTINUE (C):\n').upper()
