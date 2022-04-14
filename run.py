@@ -2,9 +2,10 @@
 import random
 from pyfiglet import figlet_format
 import os
-# import keyboard
 import gspread
 from google.oauth2.service_account import Credentials
+import pandas as pd
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -15,7 +16,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('leaderboard')
+SHEET = GSPREAD_CLIENT.open('leaderboard').sheet1
 
 # constant variables
 SHIP_SIZES = [2, 3, 3, 4, 5]
@@ -238,10 +239,29 @@ def landing_page():
     answer = input('SHOW LEADERBOARD (L) CONTINUE (C):\n').upper()
     while True:
         if answer == "L":
-            leaderboard = SHEET.worksheet("leaderboard").get_all_values()
-            print('---------------------------------------------')
-            print(leaderboard)
-            print('---------------------------------------------')
+            row_1 = SHEET.row_values(1)
+            row_2 = SHEET.row_values(2)
+            row_3 = SHEET.row_values(3)
+            row_4 = SHEET.row_values(4)
+            row_5 = SHEET.row_values(5)
+            row_6 = SHEET.row_values(6)
+            row_7 = SHEET.row_values(7)
+            row_8 = SHEET.row_values(8)
+            row_9 = SHEET.row_values(9)
+            row_10 = SHEET.row_values(10)
+            row_11 = SHEET.row_values(11)
+            print(row_1)
+            print(' ')
+            print(row_2)
+            print(row_3)
+            print(row_4)
+            print(row_5)
+            print(row_6)
+            print(row_7)
+            print(row_8)
+            print(row_9)
+            print(row_10)
+            print(row_11)
             break
         elif answer == "C":
 
