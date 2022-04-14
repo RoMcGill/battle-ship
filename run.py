@@ -25,8 +25,8 @@ COMP_BOARD = [[' '] * 8 for i in range(8)]
 USER_PLAY_BOARD = [[' '] * 8 for i in range(8)]
 COMP_PLAY_BOARD = [[' '] * 8 for i in range(8)]
 NAVIGATION = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
-W = "<winner<"
-L = "<looser<"
+W = ",winner<"
+L = ",looser<"
 
 
 def show_board(board):
@@ -250,6 +250,16 @@ def landing_page():
             row_9 = SHEET.row_values(9)
             row_10 = SHEET.row_values(10)
             row_11 = SHEET.row_values(11)
+            row_12 = SHEET.row_values(12)
+            row_13 = SHEET.row_values(13)
+            row_14 = SHEET.row_values(14)
+            row_15 = SHEET.row_values(15)
+            row_16 = SHEET.row_values(16)
+            row_17 = SHEET.row_values(17)
+            row_18 = SHEET.row_values(18)
+            row_19 = SHEET.row_values(19)
+            row_20 = SHEET.row_values(20)
+            row_21 = SHEET.row_values(21)
             print(row_1)
             print(' ')
             print(row_2)
@@ -262,6 +272,16 @@ def landing_page():
             print(row_9)
             print(row_10)
             print(row_11)
+            print(row_12)
+            print(row_13)
+            print(row_14)
+            print(row_15)
+            print(row_16)
+            print(row_17)
+            print(row_18)
+            print(row_19)
+            print(row_20)
+            print(row_21)
             break
         elif answer == "C":
 
