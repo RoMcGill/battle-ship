@@ -46,16 +46,66 @@ the score is counted in the count_score function which starts at '0', when a pla
 
 
 # testing
-I have manualy tested this games throughout every step of its creation, since deployment I have played many games from start to finish and am yet to find any errors that were not fixed before deployment, I have also sent the link of the deployed heroku app to a few friends and colleagues, no bugs or issues have been reported
+I have manualy tested this games throughout every step of its creation, since deployment I have played many games from start to finish and am yet to find any errors that were not fixed before deployment, I have also sent the link of the deployed heroku app to a few friends and colleagues, no bugs or issues have been reported. I also checked the code using the pep8 validator, the first time i did this I had alot of warnings, theese mostly consisted of "line too long" and "trailing whitespace at the end of line", after some careful refactoring all of these warnings were eliminated and the pep8 validator did not return any issues.
 
 
 # bugs
+while writing the code for this project i ran into a few bugs that were mostly syntax errors, one major bug I had was my place_ship function was stuck in a loop, and could never get to the end of the function to start the game, this was caused by my me mixing up row and collumn when writing the code, i ended up with 2 while loops that would not break while the row was in '12345678, when i changed the second 'row' to column the bug was fixed 
 
 
 # deployment
+I deployed my program using a mock terminal on heroku, i did this by:
+
+. Updateing my requirements.txt file in the terminal using the command pip3 freeze > requirements.txt
+
+. Pushing my most recent code to Github
+
+. Sign up and login to Heroku
+
+. Click the 'new app' button
+
+. Created a name for my app (has to be unique)
+
+. Selected my region
+
+. Click the 'Create app' button
+
+. From there I went into settings
+
+. Config Vars  and clicked Reveal Config Vars
+
+. Added my ports which were:
+ key = PORT value = 800
+ key = CREDS value = (my creds.json file copy and pasted in)
+
+. Next I Added the buildpacks python and nodejs in that order
+
+. With the setting finished I went over to the deploy tab
+
+. I conected my Github account and entered my repo name and clicked search
+
+. Connected to the Github repository
+
+. I chose the option for Automatic deploys,
+
+. Click deploy
+
+to veiew a heroku app you must log in and select your required app, and click open, the app will then apear in a new tab and automatically run without the use of the command python3 run.py
 
 
 # credits
+
+My mentor Mo 
+My Cohort facilatator Kasia
+Code Institute staff and alumni
+Stack overflow
+W3Schools
+pep8 python validator
+pyfiglet(for ascii art)
+youtube channels: computerphile, Tech With Tim, Knowledge Mavens, ArjanCodes
+Fellow classmates in Code Institute
+
+
 
 
 
