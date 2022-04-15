@@ -141,3 +141,6 @@ pep8 python validator
 pyfiglet(for ascii art)
 youtube channels: computerphile, Tech With Tim, Knowledge Mavens, ArjanCodes
 Fellow classmates in Code Institute
+
+# Future Learing Outcomes
+With this projects short time frame I had planned a strict timeline to stick to, unfortunatly I was ill for many days and this lead to this project not getting the time it needed to reaach full potential. This has tought me to plan for the unexpected and prepare a backup plan for future projects.
