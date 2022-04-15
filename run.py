@@ -308,10 +308,11 @@ def landing_page():
             print(row_21)
             break
         elif answer == "C":
-            landing_page()
+            return False
         else:
             print('PLEASE ENTER W OR C')
-            answer = input('SHOW LEADERBOARD (W) CONTINUE (C):\n').upper()
+            answer = input(
+                'SHOW LEADERBOARD (W) CONTINUE TO GAME (C):\n').upper()
     print(figlet_format("Ready ?", font="standard"))
     answer = input('ENTER Y OR N:\n').upper()
     while True:
