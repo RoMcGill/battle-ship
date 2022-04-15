@@ -56,8 +56,23 @@ The score is counted in the count_score function which starts at '0', when a pla
 I have manually tested this game throughout every step of its creation, since deployment I have played many games from start to finish and am yet to find any errors that were not fixed before deployment, I have also sent the link of the deployed heroku app to a few friends and colleagues, no bugs or issues have been reported. I also checked the code using the pep8 validator, the first time I did this I had alot of warnings, these mostly consisted of "line too long" and "trailing whitespace at the end of line", after some careful refactoring all of these warnings were eliminated and the pep8 validator did not return any issues.
 ![welcome-text](/images/pep8-testing.png)
 
-# bugs
-While writing the code for this project I ran into a few bugs that were mostly syntax errors, one major bug I had was my place_ship function was stuck in a loop, and could never get to the end of the function to start the game, this was caused by my mixing up of row and column when writing the code, I ended up with 2 while loops that would not break while the row was in '12345678, when I changed the second 'row' to column the bug was fixed.  
+# Bugs
+While writing the code for this project I ran into a few bugs that were mostly syntax errors, one major bug I had was my place_ship function was stuck in a loop, and could never get to the end of the function to start the game, this was caused by my mixing up of row and column when writing the code, I ended up with 2 while loops that would not break while the row was in '12345678, when I changed the second 'row' to column the bug was fixed. 
+
+# Existing bugs
+there is a bug in my navigation, if a user decides to return to the main landing page from the winners board instead of going in to play the game, the landing page gets stuck in a loop where the function will call itself over and over again no matter what option the user picks, this bug could be fixed with some simple refactoring which I was planning on doing but an illness  caused me to miss out on many days I had planned to work on this project, I believe a way to fix this bug would be to create a main function and have all of my functions run from this function and i could call them from any part of my code.
+eg. 
+```
+while True:
+        if answer == "Y":
+            turn()
+            showboard()
+            place_ships()
+        elif answer == "N":
+            print('YOU WERE A GOOD SOLDIER!')
+            main()
+```
+
 
 # Google Sheet API
 I added a google sheet API to my project so I could read and write data to the sheet so it could be stored and recalled to the terminal at any time.
